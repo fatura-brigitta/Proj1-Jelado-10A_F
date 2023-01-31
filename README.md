@@ -3,4 +3,4 @@
 
 Csapattagok:
 - Fatura Brigitta
-- Borsody Kopány
+- Borsodi Koppány
