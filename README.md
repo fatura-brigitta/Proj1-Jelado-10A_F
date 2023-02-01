@@ -2,5 +2,6 @@
 2022.10.25. Emelt Szintű Gyakorlati Vizsga - Informatika -- Jeladó feladat megoldása
 
 Csapattagok:
+
 # Fatura Brigitta
-# Borsodi Koppány
+* Borsodi Koppány
