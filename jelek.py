@@ -5,6 +5,14 @@ class Jelek:
     _x_koordináta: int
     _y_koordináta: int
 
+    @property
+    def x_kord(self) -> int:
+        return self._x_koordináta
+
+    @property
+    def y_kord(self) -> int:
+        return self._y_koordináta
+
     def __init__(self, sor: str) -> None:
         óra, perc, msperc, x_kord, y_kord = sor.split(' ')
         self._óra = int(óra)
