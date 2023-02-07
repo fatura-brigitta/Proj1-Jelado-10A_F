@@ -17,3 +17,6 @@ class Megoldas:
     def y_kordináta_keres(self, sorszám: int) -> int:
         index = sorszám - 1
         return self._jelek[index].y_kord
+
+    def eltelt(self, első_idő: int, második_idő: int) -> int:
+        return második_idő - első_idő
