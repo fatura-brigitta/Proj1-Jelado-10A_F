@@ -1,5 +1,8 @@
+from Megoldas import Megoldas
+
+
 def main() -> None:
-    pass  # Kezd a kódolást itt!
+    # mo: Megoldas = Megoldas('jel.txt')
 
 
 if __name__ == "__main__":
