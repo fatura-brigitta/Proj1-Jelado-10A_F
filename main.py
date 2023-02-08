@@ -12,7 +12,11 @@ def main() -> None:
 
     # 4. feladat
     print('4. feladat')
-    print(f'Időtartam: {mo.mspből_óra}:{mo.maradék_perc}:{mo.maradék_msperc}')
+    print(f'Időtartam: {mo.mspből_óra}:{mo.maradék_perc}:{mo.maradék_msperc}\n')
+
+    # 5. feladat
+    print('5. feladat')
+    print(f'Bal alsó: {mo.bal_also_x_keres} {mo.bal_also_y_keres}, jobb felső: {mo.jobb_felso_x_keres} {mo.jobb_felso_y_keres}\n')
 
 
 if __name__ == "__main__":
