@@ -20,7 +20,7 @@ def main() -> None:
 
     # 6. feladat
     print('6. feladat')
-    print(f'Elmozdulás: {mo.elmozdulás_összesen} egység')
+    print(f'Elmozdulás: {mo.tav} egység')
 
 
 if __name__ == "__main__":

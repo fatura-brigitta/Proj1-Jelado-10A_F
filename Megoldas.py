@@ -54,18 +54,25 @@ class Megoldas:
                 legnagyobb_y = jel.y_kord
         return legnagyobb_y
 
-    def táv_pontok_közt(self, első_jel: int, második_jel: int) -> float:
-        jel1x = self._jelek[első_jel + 1].x_kord
-        jel1y = self._jelek[első_jel + 1].y_kord
-        jel2x = self._jelek[második_jel + 2].x_kord
-        jel2y = self._jelek[második_jel + 2].y_kord
-        return math.sqrt((jel2x - jel1x)**2 + (jel2y - jel1y)**2)
+    @property
+    def tav(self) -> list[float]:
+        asd: list[float] = []
+        for i, e in enumerate(self._jelek):
+            # math.sqrt((e.x_kord[i] - e.x_kord[i + 1])**2 + (e.y_kord[i] - e.y_kord[i + 1])**2)
+            asd.append(round(math.sqrt((e.x_kord - self._jelek[i + 1].x_kord)**2 + (e.y_kord - self._jelek[i + 1].y_kord)**2), 3))
+            if i == 249:
+                break
+        new_list = sum(asd)
+        return new_list
+
+        
 
     @property
     def elmozdulás_összesen(self):
         összesen = 0
         for i in range(len(self._jelek)-1):
             összesen += self.táv_pontok_közt(self._jelek[i], self._jelek[i+1])
+        return összesen
 
 
     def __init__(self, állomány_neve: str):
