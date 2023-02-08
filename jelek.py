@@ -16,7 +16,7 @@ class Jelek:
     @property
     def idő_mspercben(self) -> int:
         óra_mspben = self._óra * 3600
-        perc_mspben = self._perc * 3600
+        perc_mspben = self._perc * 60
         return óra_mspben + perc_mspben + self._másodperc
 
     def __init__(self, sor: str) -> None:

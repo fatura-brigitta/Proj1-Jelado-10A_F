@@ -1,8 +1,25 @@
-from Jelek import Jelek
+from math import floor
+from jelek import Jelek
 
 
 class Megoldas:
     _jelek: list[Jelek] = []
+
+    @ property
+    def első_utolsó_között_mspben(self) -> int:
+        return self.eltelt(self._jelek[0].idő_mspercben, self._jelek[-1].idő_mspercben)
+
+    @ property
+    def mspből_óra(self) -> int:
+        return floor(self.első_utolsó_között_mspben / 3600)
+
+    @ property
+    def maradék_perc(self) -> int:
+        return floor((self.első_utolsó_között_mspben - self.mspből_óra * 3600) / 60)
+
+    @ property
+    def maradék_msperc(self) -> int:
+        return self.első_utolsó_között_mspben - self.mspből_óra * 3600 - self.maradék_perc * 60
 
     def __init__(self, állomány_neve: str):
         self._jelek = []
