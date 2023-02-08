@@ -21,6 +21,38 @@ class Megoldas:
     def maradék_msperc(self) -> int:
         return self.első_utolsó_között_mspben - self.mspből_óra * 3600 - self.maradék_perc * 60
 
+    @property
+    def bal_also_x_keres(self) -> int:
+        legkisebb_x = self._jelek[0].x_kord
+        for jel in self._jelek:
+            if jel.x_kord < legkisebb_x:
+                legkisebb_x = jel.x_kord
+        return legkisebb_x
+
+    @property
+    def bal_also_y_keres(self) -> int:
+        legkisebb_y = self._jelek[0].y_kord
+        for jel in self._jelek:
+            if jel.y_kord < legkisebb_y:
+                legkisebb_y = jel.y_kord
+        return legkisebb_y
+
+    @property
+    def jobb_felso_x_keres(self) -> int:
+        legnagyobb_x = self._jelek[0].x_kord
+        for jel in self._jelek:
+            if jel.x_kord > legnagyobb_x:
+                legnagyobb_x = jel.x_kord
+        return legnagyobb_x
+
+    @property
+    def jobb_felso_y_keres(self) -> int:
+        legnagyobb_y = self._jelek[0].y_kord
+        for jel in self._jelek:
+            if jel.y_kord > legnagyobb_y:
+                legnagyobb_y = jel.y_kord
+        return legnagyobb_y
+
     def __init__(self, állomány_neve: str):
         self._jelek = []
         with open(állomány_neve, 'r', encoding='utf-8') as file:
