@@ -18,6 +18,10 @@ def main() -> None:
     print('5. feladat')
     print(f'Bal alsó: {mo.bal_also_x_keres} {mo.bal_also_y_keres}, jobb felső: {mo.jobb_felso_x_keres} {mo.jobb_felso_y_keres}\n')
 
+    # 6. feladat
+    print('6. feladat')
+    print(f'Elmozdulás: {mo.elmozdulás_összesen} egység')
+
 
 if __name__ == "__main__":
     main()
