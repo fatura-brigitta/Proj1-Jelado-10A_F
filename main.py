@@ -14,5 +14,6 @@ def main() -> None:
     print('4. feladat')
     print(f'Időtartam: {mo.mspből_óra}:{mo.maradék_perc}:{mo.maradék_msperc}')
 
+
 if __name__ == "__main__":
     main()
