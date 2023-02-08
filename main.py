@@ -7,7 +7,12 @@ def main() -> None:
 
     # 2. feladat
     print('2. feladat')
-    jel_input: int = int(input('Adja meg a jel sorszámát! '))
+    try:
+        jel_input: int = int(input('Adja meg a jel sorszámát! '))
+    except ValueError:
+        print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie')
+        jel_input: int = int(input('Adja meg a jel sorszámát! '))
+
     print(f'x={mo.x_kordináta_keres(jel_input)} y={mo.y_kordináta_keres(jel_input)}\n')
 
     # 4. feladat
