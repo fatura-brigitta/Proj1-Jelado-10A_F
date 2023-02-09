@@ -1,3 +1,4 @@
+from math import sqrt
 from math import floor
 from jelek import Jelek
 
@@ -52,6 +53,22 @@ class Megoldas:
             if jel.y_kord > legnagyobb_y:
                 legnagyobb_y = jel.y_kord
         return legnagyobb_y
+
+    @property
+    def táv_pontok_közt(self) -> float:
+        elmozdulas: list[float] = []
+        for i, e in enumerate(self._jelek):
+            if i == len(self._jelek) - 1:
+                break
+            elmozdulas.append(sqrt((e.x_kord - self._jelek[i + 1].x_kord)**2 + (e.y_kord - self._jelek[i + 1].y_kord)**2))
+        return round(sum(elmozdulas), 3)
+
+    @property
+    def elmozdulás_összesen(self):
+        összesen = 0
+        for i in range(len(self._jelek)-1):
+            összesen += self.táv_pontok_közt(self._jelek[i], self._jelek[i+1])
+        return összesen
 
     def __init__(self, állomány_neve: str):
         self._jelek = []
