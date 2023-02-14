@@ -27,6 +27,12 @@ def main() -> None:
     print('6. feladat')
     print(f'Elmozdulás: {mo.táv_pontok_közt} egység')
 
+    # 7. feladat 
+    print('7. feladat')
+    print('kimaradt.txt')
+    
+
+
 
 if __name__ == "__main__":
     main()

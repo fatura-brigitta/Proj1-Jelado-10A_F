@@ -66,9 +66,63 @@ class Megoldas:
     @property
     def elmozdulás_összesen(self):
         összesen = 0
-        for i in range(len(self._jelek)-1):
-            összesen += self.táv_pontok_közt(self._jelek[i], self._jelek[i+1])
+        for i in range(len(self._jelek) - 1):
+            összesen += self.táv_pontok_közt(self._jelek[i], self._jelek[i + 1])
         return összesen
+
+    def kimaradtak_ido_szerint(self) -> list[Jelek]:
+        kimaradtak_ido_szerint: list[Jelek] = []
+        for i, jel in enumerate(self._jelek):
+            if self.eltelt(jel.idő_mspercben, self._jelek[i + 1].idő_mspercben) > 300:
+                kimaradtak_ido_szerint.append(self._jelek[i + 1])
+        return kimaradtak_ido_szerint
+
+    def kimaradtak_tav_szerint(self) -> list[Jelek]:
+        kimaradtak_tav_szerint: list[Jelek] = []
+        for i, jel in enumerate(self._jelek):
+            x_ek_abs: int = abs(self._jelek[i + 1].x_kord - jel.x_kord)
+            y_ok_abs: int = abs(self._jelek[i + 1].y_kord - jel.y_kord)
+            távolság: int = int(max(x_ek_abs, y_ok_abs))
+            if távolság > 10:
+                kimaradtak_tav_szerint.append(self._jelek[i + 1])
+        return kimaradtak_tav_szerint
+
+    def kiiras(self, állomány_neve: str):
+        with open(állomány_neve, 'w', encoding='utf-8') as file:
+            file.write()
+
+    # @property
+    # def kimaradtak_ido_szerint(self) -> int:
+    #     kimaradtak_ido_szerint = 0
+    #     for index in range(len(self._jelek) - 1):
+    #         időkülönbség: int = int(self.eltelt(self._jelek[index].idő_mspercben, self._jelek[index + 1].idő_mspercben))
+    #         if időkülönbség > 300:
+    #             kimaradtak_ido_szerint: int = int((időkülönbség - 1) // 300)
+    #     return int(kimaradtak_ido_szerint)
+
+    # @property
+    # def kimaradtak_koordinata_szerint(self) -> int:
+    #     kimaradtak_kord_szerint = 0
+    #     for index in range(len(self._jelek) - 1):
+    #         x_ek_abs: int = abs(self._jelek[index + 1].x_kord - self._jelek[index].x_kord)
+    #         y_ok_abs: int = abs(self._jelek[index + 1].y_kord - self._jelek[index].y_kord)
+    #         távolság: int = int(max(x_ek_abs, y_ok_abs))
+    #         if távolság > 10:
+    #             kimaradtak_kord_szerint = (távolság - 1) // 10
+    #     return int(kimaradtak_kord_szerint)
+
+    # def kimaradtak_lista(self, jel):
+    #     kimaradt_ido_szerint_list: list[Jelek] = []
+    #     for jel in self._jelek:
+    #         if self.kimaradtak_ido_szerint() > self.kimaradtak_koordinata_szerint()
+
+    # def kimaradtak(self, fájl: str):
+    #     with open(fájl, 'w', encoding='utf-8') as file:
+    #         for i, e in enumerate(self._jelek):
+    #             kimaradas_ido: int = int()
+    #             kimaradas_kord: int = int(self.kimaradtak_koordinata_szerint(self._jelek[index]))
+    #             if kimaradas_ido > kimaradas_kord:
+    #                 file.write(f'{self._jelek[index + 1].óra} {self._jelek[index + 1].perc} {self._jelek[index + 1].másodperc} időeltérés {self.kimaradtak_ido_szerint()}')
 
     def __init__(self, állomány_neve: str):
         self._jelek = []

@@ -10,6 +10,18 @@ class Jelek:
         return self._x_koordináta
 
     @property
+    def óra(self) -> int:
+        return self._óra
+
+    @property
+    def perc(self) -> int:
+        return self.perc
+
+    @property
+    def másodperc(self) -> int:
+        return self._másodperc
+
+    @property
     def y_kord(self) -> int:
         return self._y_koordináta
 
