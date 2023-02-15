@@ -64,10 +64,10 @@ class Megoldas:
         return round(sum(elmozdulas), 3)
 
     @property
-    def elmozdulás_összesen(self):
-        összesen = 0
-        for i in range(len(self._jelek)-1):
-            összesen += self.táv_pontok_közt(self._jelek[i], self._jelek[i+1])
+    def elmozdulás_összesen(self) -> float:
+        összesen: float = 0
+        for i in range(len(self._jelek) - 1):
+            összesen += float(self.táv_pontok_közt(self._jelek[i], self._jelek[i + 1]))
         return összesen
 
     def __init__(self, állomány_neve: str):
@@ -86,3 +86,35 @@ class Megoldas:
 
     def eltelt(self, első_idő: int, második_idő: int) -> int:
         return második_idő - első_idő
+
+    def távolság_kimaradtakhoz(self, jel_i: Jelek, jel_i_meg_egy: Jelek) -> int:
+        x_kordok_kulonbsege: int = abs(jel_i_meg_egy.x_kord - jel_i.x_kord)
+        y_kordok_kulonbsege: int = abs(jel_i_meg_egy.y_kord - jel_i.y_kord)
+        tavolsag: int = max(x_kordok_kulonbsege, y_kordok_kulonbsege)
+        return tavolsag
+
+    def kimaradtak_ido_szerint(self, jel_1_ido_msp: int, jel_2_ido_msp: int):
+        kimaradt_ido: int = 0
+        idokulonbseg: int = self.eltelt(jel_1_ido_msp, jel_2_ido_msp)
+        if idokulonbseg > 300:
+            kimaradt_ido = (idokulonbseg - 1) // 300
+        return kimaradt_ido
+
+    def kimaradtak_tav_szerint(self, jel_1: Jelek, jel_2: Jelek):
+        kimaradtak_tav: int = 0
+        tav = self.távolság_kimaradtakhoz(jel_1, jel_2)
+        if tav > 10:
+            kimaradtak_tav = (tav - 1) // 10
+        return kimaradtak_tav
+
+    def kimaradtak_kigyujtese(self, állomány_neve: str):
+        with open(állomány_neve, 'w', encoding='utf-8') as file:
+            for i, jel in enumerate(self._jelek):
+                if i == 0:
+                    continue
+                ido_kim: str = f'{jel.óra} {jel.perc} {jel.másodperc} időeltérés {self.kimaradtak_ido_szerint(self._jelek[i - 1].idő_mspercben, jel.idő_mspercben)}'
+                tav_kim: str = f'{jel.óra} {jel.perc} {jel.másodperc} koordináta-eltérés {self.kimaradtak_tav_szerint(self._jelek[i - 1], jel)}'
+                if self.kimaradtak_ido_szerint(self._jelek[i - 1].idő_mspercben, jel.idő_mspercben) > self.kimaradtak_tav_szerint(self._jelek[i - 1], jel):
+                    file.write(f'{ido_kim}\n')
+                elif self.kimaradtak_ido_szerint(self._jelek[i - 1].idő_mspercben, jel.idő_mspercben) < self.kimaradtak_tav_szerint(self._jelek[i - 1], jel):
+                    file.write(f'{tav_kim}\n')
