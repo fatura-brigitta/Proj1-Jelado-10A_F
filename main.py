@@ -7,11 +7,13 @@ def main() -> None:
 
     # 2. feladat
     print('2. feladat')
-    try:
-        jel_input: int = int(input('Adja meg a jel sorszámát! '))
-    except ValueError:
-        print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie')
-        jel_input: int = int(input('Adja meg a jel sorszámát! '))
+    jel_input = 0
+    while jel_input == 0:
+        try:
+            jel_input: int = int(input('Adja meg a jel sorszámát! '))
+        except ValueError:
+            print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie')
+            continue
 
     print(f'x={mo.x_kordináta_keres(jel_input)} y={mo.y_kordináta_keres(jel_input)}\n')
 
