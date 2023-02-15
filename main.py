@@ -25,13 +25,13 @@ def main() -> None:
 
     # 6. feladat
     print('6. feladat')
-    print(f'Elmozdulás: {mo.táv_pontok_közt} egység')
+    print(f'Elmozdulás: {mo.táv_pontok_közt} egység\n')
 
-    # 7. feladat 
+    # 7. feladat
     print('7. feladat')
     print('kimaradt.txt')
-    
-
+    állomány: str = 'kimaradt.txt'
+    mo.kimaradtak_kigyujtese(állomány)
 
 
 if __name__ == "__main__":

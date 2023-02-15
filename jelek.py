@@ -15,7 +15,7 @@ class Jelek:
 
     @property
     def perc(self) -> int:
-        return self.perc
+        return self._perc
 
     @property
     def másodperc(self) -> int:
