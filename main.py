@@ -11,9 +11,13 @@ def main() -> None:
     while jel_input == 0:
         try:
             jel_input: int = int(input('Adja meg a jel sorszámát! '))
-        except ValueError:
-            print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie')
+        except Exception:
+            print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie\n')
             continue
+        if jel_input >= 1:
+            break
+        else:
+            print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie\n')
 
     print(f'x={mo.x_kordináta_keres(jel_input)} y={mo.y_kordináta_keres(jel_input)}\n')
 
