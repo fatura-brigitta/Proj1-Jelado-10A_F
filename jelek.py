@@ -1,4 +1,4 @@
-class Jelek:
+class Jel:
     _óra: int
     _perc: int
     _másodperc: int

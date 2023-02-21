@@ -1,24 +1,24 @@
 from math import sqrt
 from math import floor
-from jelek import Jelek
+from jelek import Jel
 
 
 class Megoldas:
-    _jelek: list[Jelek] = []
+    _jelek: list[Jel] = []
 
-    @ property
+    @property
     def első_utolsó_között_mspben(self) -> int:
         return self.eltelt(self._jelek[0].idő_mspercben, self._jelek[-1].idő_mspercben)
 
-    @ property
+    @property
     def mspből_óra(self) -> int:
         return floor(self.első_utolsó_között_mspben / 3600)
 
-    @ property
+    @property
     def maradék_perc(self) -> int:
         return floor((self.első_utolsó_között_mspben - self.mspből_óra * 3600) / 60)
 
-    @ property
+    @property
     def maradék_msperc(self) -> int:
         return self.első_utolsó_között_mspben - self.mspből_óra * 3600 - self.maradék_perc * 60
 
@@ -67,14 +67,14 @@ class Megoldas:
     def elmozdulás_összesen(self) -> float:
         összesen: float = 0
         for i in range(len(self._jelek) - 1):
-            összesen += float(self.táv_pontok_közt(self._jelek[i], self._jelek[i + 1]))
+            összesen += float(self.táv_pontok_közt(self._jelek[i], self._jelek[i + 1]))  # type: ignore
         return összesen
 
     def __init__(self, állomány_neve: str):
         self._jelek = []
         with open(állomány_neve, 'r', encoding='utf-8') as file:
             for sor in file.read().splitlines():
-                self._jelek.append(Jelek(sor))
+                self._jelek.append(Jel(sor))
 
     def x_kordináta_keres(self, sorszám: int) -> int:
         index = sorszám - 1
@@ -87,20 +87,20 @@ class Megoldas:
     def eltelt(self, első_idő: int, második_idő: int) -> int:
         return második_idő - első_idő
 
-    def távolság_kimaradtakhoz(self, jel_i: Jelek, jel_i_meg_egy: Jelek) -> int:
+    def távolság_kimaradtakhoz(self, jel_i: Jel, jel_i_meg_egy: Jel) -> int:
         x_kordok_kulonbsege: int = abs(jel_i_meg_egy.x_kord - jel_i.x_kord)
         y_kordok_kulonbsege: int = abs(jel_i_meg_egy.y_kord - jel_i.y_kord)
         tavolsag: int = max(x_kordok_kulonbsege, y_kordok_kulonbsege)
         return tavolsag
 
-    def kimaradtak_ido_szerint(self, jel_1_ido_msp: int, jel_2_ido_msp: int):
+    def kimaradtak_ido_szerint(self, jel_1_ido_msp: int, jel_2_ido_msp: int) -> int:
         kimaradt_ido: int = 0
         idokulonbseg: int = self.eltelt(jel_1_ido_msp, jel_2_ido_msp)
         if idokulonbseg > 300:
             kimaradt_ido = (idokulonbseg - 1) // 300
         return kimaradt_ido
 
-    def kimaradtak_tav_szerint(self, jel_1: Jelek, jel_2: Jelek):
+    def kimaradtak_tav_szerint(self, jel_1: Jel, jel_2: Jel) -> int:
         kimaradtak_tav: int = 0
         tav = self.távolság_kimaradtakhoz(jel_1, jel_2)
         if tav > 10:
