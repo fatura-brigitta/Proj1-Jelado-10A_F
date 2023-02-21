@@ -63,13 +63,6 @@ class Megoldas:
             elmozdulas.append(sqrt((e.x_kord - self._jelek[i + 1].x_kord)**2 + (e.y_kord - self._jelek[i + 1].y_kord)**2))
         return round(sum(elmozdulas), 3)
 
-    @property
-    def elmozdulás_összesen(self) -> float:
-        összesen: float = 0
-        for i in range(len(self._jelek) - 1):
-            összesen += float(self.táv_pontok_közt(self._jelek[i], self._jelek[i + 1]))  # type: ignore
-        return összesen
-
     def __init__(self, állomány_neve: str):
         self._jelek = []
         with open(állomány_neve, 'r', encoding='utf-8') as file:
