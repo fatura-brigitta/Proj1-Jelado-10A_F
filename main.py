@@ -7,19 +7,9 @@ def main() -> None:
 
     # 2. feladat
     print('2. feladat')
-    jel_input = 0
-    while jel_input == 0:
-        try:
-            jel_input: int = int(input('Adja meg a jel sorszámát! '))
-        except Exception:
-            print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie\n')
-            continue
-        if jel_input >= 1:
-            break
-        else:
-            print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie\n')
-
-    print(f'x={mo.x_kordináta_keres(jel_input)} y={mo.y_kordináta_keres(jel_input)}\n')
+    jel_input: int = 0
+    sorszám = mo.szám_input_ellenőrzés(jel_input, 'Adja meg a jel sorszámát! ')
+    print(f'x={mo.x_kordináta_keres(sorszám)} y={mo.y_kordináta_keres(sorszám)}\n')
 
     # 4. feladat
     print('4. feladat')
@@ -36,8 +26,7 @@ def main() -> None:
     # 7. feladat
     print('7. feladat')
     print('kimaradt.txt')
-    állomány: str = 'kimaradt.txt'
-    mo.kimaradtak_kigyujtese(állomány)
+    mo.kimaradtak_kigyujtese('kimaradt.txt')
 
 
 if __name__ == "__main__":

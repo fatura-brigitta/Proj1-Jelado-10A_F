@@ -1,6 +1,6 @@
 from math import sqrt
 from math import floor
-from jelek import Jel
+from Jel import Jel
 
 
 class Megoldas:
@@ -68,6 +68,18 @@ class Megoldas:
         with open(állomány_neve, 'r', encoding='utf-8') as file:
             for sor in file.read().splitlines():
                 self._jelek.append(Jel(sor))
+
+    def szám_input_ellenőrzés(self, jel_input: int, szöveg: str) -> int:
+        jel_input = 0
+        while jel_input <= 0:
+            try:
+                jel_input = int(input(szöveg))
+            except Exception:
+                print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie\n')
+                continue
+            if jel_input <= 0:
+                print('A sorszámnak egy 0-nál nagyobb egész számnak kell lennie\n')
+        return jel_input
 
     def x_kordináta_keres(self, sorszám: int) -> int:
         index = sorszám - 1
