@@ -60,24 +60,24 @@ class TestMegoldás(TestCase):
         self.assertEqual(self.megoldás1.y_kordináta_keres(self.sor52), 653)
 
     def test_eltelt(self):
-        self.assertEqual(self.megoldás1._eltelt(self.sor1, self.sor2), 1)
-        self.assertEqual(self.megoldás1._eltelt(self.sor12, self.sor13), 1)
-        self.assertEqual(self.megoldás1._eltelt(self.sor52, self.sor53), 1)
+        self.assertEqual(self.megoldás1.eltelt(self.sor1, self.sor2), 1)
+        self.assertEqual(self.megoldás1.eltelt(self.sor12, self.sor13), 1)
+        self.assertEqual(self.megoldás1.eltelt(self.sor52, self.sor53), 1)
 
     def test_távolság_kimaradtakhoz(self):
-        self.assertEqual(self.megoldás1._távolság_kimaradtakhoz(self.sor1_2, self.sor2_2), 2)
-        self.assertEqual(self.megoldás1._távolság_kimaradtakhoz(self.sor12_2, self.sor13_2), 8)
-        self.assertEqual(self.megoldás1._távolság_kimaradtakhoz(self.sor52_2, self.sor53_2), 7)
+        self.assertEqual(self.megoldás1.távolság_kimaradtakhoz(self.sor1_2, self.sor2_2), 2)
+        self.assertEqual(self.megoldás1.távolság_kimaradtakhoz(self.sor12_2, self.sor13_2), 8)
+        self.assertEqual(self.megoldás1.távolság_kimaradtakhoz(self.sor52_2, self.sor53_2), 7)
 
     def test_kimaradtak_ido_szerint(self):
-        self.assertEqual(self.megoldás1._kimaradtak_ido_szerint(self.sor1_2.idő_mspercben, self.sor2_2.idő_mspercben), 0)
-        self.assertEqual(self.megoldás1._kimaradtak_ido_szerint(self.sor12_2.idő_mspercben, self.sor13_2.idő_mspercben), 0)
-        self.assertEqual(self.megoldás1._kimaradtak_ido_szerint(self.sor52_2.idő_mspercben, self.sor53_2.idő_mspercben), 0)
+        self.assertEqual(self.megoldás1.kimaradtak_ido_szerint(self.sor1_2.idő_mspercben, self.sor2_2.idő_mspercben), 0)
+        self.assertEqual(self.megoldás1.kimaradtak_ido_szerint(self.sor12_2.idő_mspercben, self.sor13_2.idő_mspercben), 0)
+        self.assertEqual(self.megoldás1.kimaradtak_ido_szerint(self.sor52_2.idő_mspercben, self.sor53_2.idő_mspercben), 0)
 
     def test_kimaradtak_tav_szerint(self):
-        self.assertEqual(self.megoldás1._kimaradtak_tav_szerint(self.sor1_2, self.sor2_2), 0)
-        self.assertEqual(self.megoldás1._kimaradtak_tav_szerint(self.sor12_2, self.sor13_2), 0)
-        self.assertEqual(self.megoldás1._kimaradtak_tav_szerint(self.sor52_2, self.sor53_2), 0)
+        self.assertEqual(self.megoldás1.kimaradtak_tav_szerint(self.sor1_2, self.sor2_2), 0)
+        self.assertEqual(self.megoldás1.kimaradtak_tav_szerint(self.sor12_2, self.sor13_2), 0)
+        self.assertEqual(self.megoldás1.kimaradtak_tav_szerint(self.sor52_2, self.sor53_2), 0)
 
     def test_kimaradtak_kigyujtese(self):
         self.megoldás1.kimaradtak_kigyujtese('kimaradt.txt')
